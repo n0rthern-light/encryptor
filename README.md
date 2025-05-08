@@ -1,5 +1,5 @@
-## Simple python module wrapper around C++ ChaCha20-Sha256 cryptor binary.
-The encryption algorithm uses the chacha20 cipher with a 32-byte key for encryption and sha-256 for built-in integrity checking.
+## C++ ChaCha20-Sha256 cryptor wrapped as simple Python module.
+The encryption algorithm uses the chacha20 cipher with a symmetric 32-byte cipher key and sha-256 for built-in integrity checking.
 Due to the random nonce, it provides a unique output on every run.
 
 ## Usage

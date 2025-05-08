@@ -28,26 +28,22 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    std::string mode = argv[1];      // First argument: mode (-e or -d)
-    std::string inputFile = argv[2]; // Second argument: input file
-    std::string keyFile = argv[3];   // Third argument: key file
+    std::string mode = argv[1];
+    std::string inputFile = argv[2];
+    std::string keyFile = argv[3];
 
     try {
-        // Read input and key from files
         cryptor::data_t input = readFile(inputFile);
         cryptor::data_t keyData = readFile(keyFile);
 
-        // Ensure key size is exactly 32 bytes
         if (keyData.size() != 32) {
             std::cerr << "Error: Key must be exactly 32 bytes.\n";
             return 1;
         }
 
-        // Convert key vector to std::array
         cryptor::key_t key;
         std::copy_n(keyData.begin(), 32, key.begin());
 
-        // Encrypt or Decrypt based on user input
         cryptor::data_t output;
         if (mode == "-e") {
             cryptor::Encrypt(input, key, &output);
@@ -60,7 +56,6 @@ int main(int argc, char* argv[]) {
             return 1;
         }
 
-        // Write output to file
         std::string outputFile = inputFile + ".out";
         writeFile(outputFile, output);
         std::cout << "Output written to: " << outputFile << std::endl;

@@ -5,13 +5,10 @@ import subprocess
 import sys
 import tempfile
 
-# Get the current script's directory
 SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
 CRYPTOR_BINARY = os.path.join(SCRIPT_DIR, 'encryptor/bin/cryptor')
 
 def run_cryptor(mode, data, key):
-    """Execute the cryptor binary for encryption or decryption using temporary files."""
-
     try:
         with tempfile.NamedTemporaryFile(delete=False, mode="wb") as data_file, tempfile.NamedTemporaryFile(delete=False, mode="wb") as key_file:
             data_file.write(data)
@@ -46,10 +43,8 @@ def run_cryptor(mode, data, key):
         sys.exit(1)
 
 def encrypt(data, key):
-    """Encrypt using the cryptor binary."""
     encrypted = run_cryptor("-e", data, key)
     
-    # Verify encryption correctness by decrypting
     decrypted = decrypt(encrypted, key)
     if decrypted != data:
         print(decrypted)
@@ -60,6 +55,5 @@ def encrypt(data, key):
     return encrypted
 
 def decrypt(data, key):
-    """Decrypt using the cryptor binary."""
     return run_cryptor("-d", data, key)
 

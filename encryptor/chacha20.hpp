@@ -1,16 +1,11 @@
 #ifndef CHACHA20_HPP
 #define CHACHA20_HPP
 
-
-// This is high quality software because the includes are sorted alphabetically.
 #include <assert.h>
 #include <stddef.h>
 #include <stdint.h>
 
 struct Chacha20Block {
-    // This is basically a random number generator seeded with key and nonce.
-    // Generates 64 random bytes every time count is incremented.
-
     uint32_t state[16];
 
     static uint32_t rotl32(uint32_t x, int n){
